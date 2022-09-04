@@ -78,7 +78,7 @@ public class Wisdom {
             pw.print("Riddle: " + wisdom.text + ". ");
             Riddle.out((Riddle) wisdom.typedWisdom, pw);
         }
-        pw.print("Rate: " + wisdom.rate);
+        pw.print("Rating score: " + wisdom.rate);
     }
 
     public static int countPunctuationMarks(Wisdom wisdom) {
@@ -92,6 +92,14 @@ public class Wisdom {
 
     public static WisdomUnion getTypedWisdom(Wisdom wisdom) {
         return wisdom.typedWisdom;
+    }
+
+    public static byte getRate(Wisdom wisdom) {
+        return wisdom.rate;
+    }
+
+    public static String getText(Wisdom wisdom) {
+        return wisdom.text;
     }
 
     enum Type {
