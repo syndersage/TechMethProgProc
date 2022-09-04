@@ -36,12 +36,11 @@ public class SingleLinkedContainer {
                     }
                     slc.tail = newNode;
                     slc.size++;
-                    System.out.println("+Wisdom");
+                    if (Client.arguments.verbose) Client.logOut.println("+Wisdom");
                 }
             } catch (NumberFormatException | NoSuchElementException e) {
-                System.out.println(e.getMessage());
+                if (Client.arguments.verbose) Client.logOut.println(e.getMessage());
             }
-
         }
     }
 
