@@ -37,6 +37,21 @@ public class SingleLinkedContainer {
     }
 
     /**
+     * Очистка контейнера (списка из мудростей) - удаление первой, последней позиций и обнуление длины этого списка.
+     *
+     * @param slc контейнер, который нужно очистить
+     */
+    public static void clear(SingleLinkedContainer slc) {
+        slc.size = 0;
+        slc.head = null;
+        slc.tail = null;
+    }
+
+    public static int getSize(SingleLinkedContainer slc) {
+        return slc.size;
+    }
+
+    /**
      * Осуществляется вывод всех элементов из списка при помощи вызова статического метода
      * вывода информации у Wisdom класс.
      * Перебор производится благодаря вспомогательному классу Node, представляющего один элемент списка
