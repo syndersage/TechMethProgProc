@@ -28,4 +28,9 @@ public class Wisdom {
             Proverb.out((Proverb) wisdom.typedWisdom, pw);
         }
     }
+
+    public static int countPunctuationMarks(Wisdom wisdom) {
+        String punMarks = "!.,:;'-?\"";
+        return (int) wisdom.text.chars().filter((x) -> punMarks.indexOf(x) != -1).count();
+    }
 }
