@@ -16,6 +16,7 @@ public interface WisdomUnion {
         switch (type) {
             case APHORISM -> typedWisdom = Aphorism.in(scan);
             case PROVERB -> typedWisdom = Proverb.in(scan);
+            case RIDDLE -> typedWisdom = Riddle.in(scan);
         }
         return typedWisdom;
     }
