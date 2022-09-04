@@ -90,6 +90,10 @@ public class Wisdom {
         return Wisdom.countPunctuationMarks(w1) - Wisdom.countPunctuationMarks(w2);
     }
 
+    public static WisdomUnion getTypedWisdom(Wisdom wisdom) {
+        return wisdom.typedWisdom;
+    }
+
     enum Type {
         APHORISM(3), PROVERB(3), RIDDLE(3);
         private final int numOfFields;
