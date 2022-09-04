@@ -29,11 +29,15 @@ public class Client {
         try (Scanner scan = new Scanner(arguments.inPath);
         PrintWriter pw = new PrintWriter(arguments.outPath.toString())) {
             SingleLinkedContainer.in(slc, scan);
-            pw.println("Filled container.\r\n\r\nContainer contains " + SingleLinkedContainer.getSize(slc) + " elements.");
+            pw.println("Filled container.\r\nContainer contains " + SingleLinkedContainer.getSize(slc) + " elements.");
             if (arguments.sort) {
                 SingleLinkedContainer.sort(slc);
             }
             SingleLinkedContainer.out(slc, pw);
+            if (arguments.pair) {
+                pw.println("\r\nIterating every pair:");
+                SingleLinkedContainer.iteratePairs(slc, pw);
+            }
             SingleLinkedContainer.clear(slc);
             pw.println("\r\nEmpty container.\r\nContainer contains " + SingleLinkedContainer.getSize(slc) + " elements.");
             SingleLinkedContainer.out(slc, pw);
