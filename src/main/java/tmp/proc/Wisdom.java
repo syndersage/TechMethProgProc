@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Wisdom {
     enum Type {
-        APHORISM, PROVERB
+        APHORISM, PROVERB, RIDDLE
     }
 
     private String text;
@@ -52,6 +52,9 @@ public class Wisdom {
         } else if (wisdom.typedWisdom instanceof Proverb) {
             pw.print("Proverb: " + wisdom.text + ". ");
             Proverb.out((Proverb) wisdom.typedWisdom, pw);
+        } else if (wisdom.typedWisdom instanceof Riddle) {
+            pw.print("Riddle: " + wisdom.text + ". ");
+            Riddle.out((Riddle) wisdom.typedWisdom, pw);
         }
         pw.print("Rate: " + wisdom.rate);
     }
