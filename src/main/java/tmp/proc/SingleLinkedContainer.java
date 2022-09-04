@@ -36,6 +36,42 @@ public class SingleLinkedContainer {
         }
     }
 
+    public static void sort(SingleLinkedContainer slc) {
+        int j;
+        Node n1;
+        Node n2;
+        Wisdom temp;
+        for (int i = 1; i < slc.size; i++) {
+            j = i;
+            while (j > 0) {
+                n1 = getNode(slc, j);
+                n2 = getNode(slc, j - 1);
+                if (n1 == null | n2 == null) {
+                    return;
+                }
+                if (Wisdom.compare(n1.wisdom, n2.wisdom) > 0) {
+                    break;
+                } else {
+                    temp = n1.wisdom;
+                    n1.wisdom = n2.wisdom;
+                    n2.wisdom = temp;
+                }
+                j--;
+            }
+        }
+    }
+
+    private static Node getNode(SingleLinkedContainer slc, int index) {
+        if (index < 0 | index > slc.size - 1) {
+            return null;
+        }
+        Node node = slc.head;
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
+    }
+
     /**
      * Очистка контейнера (списка из мудростей) - удаление первой, последней позиций и обнуление длины этого списка.
      *
