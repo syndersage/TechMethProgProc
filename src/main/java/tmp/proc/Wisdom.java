@@ -1,6 +1,7 @@
 package tmp.proc;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Wisdom {
@@ -10,13 +11,38 @@ public class Wisdom {
 
     private String text;
 
+    private byte rate;
+
     private WisdomUnion typedWisdom;
 
-    public static Wisdom in(Scanner scan) {
+    public static Wisdom in(Scanner scan) throws NumberFormatException, NoSuchElementException {
         Wisdom wisdom = new Wisdom();
         wisdom.typedWisdom = WisdomUnion.in(scan);
-        wisdom.text = scan.nextLine();
+        Wisdom.inText(wisdom, scan);
+        Wisdom.inRate(wisdom, scan);
         return wisdom;
+    }
+
+    public static void inText(Wisdom wisdom, Scanner scan) throws NoSuchElementException {
+        String line = scan.nextLine();
+        if (line.isBlank()) {
+            throw new NoSuchElementException("Wisdom text must be at least lone symbol length.");
+        } else {
+            wisdom.text = line;
+        }
+    }
+
+    public static void inRate(Wisdom wisdom, Scanner scan) throws NumberFormatException, NoSuchElementException {
+        String line = scan.nextLine();
+        try {
+            wisdom.rate = Byte.parseByte(line);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Incorrect rate input: Expected [1 - 10]. Received: " + line);
+        }
+        if (wisdom.rate < 0 | wisdom.rate > 10) {
+            wisdom.rate = 0;
+            throw new NumberFormatException("Incorrect rate value: Expected [1 - 10]. Received: " + line);
+        }
     }
 
     public static void out(Wisdom wisdom, PrintWriter pw) {
@@ -27,6 +53,7 @@ public class Wisdom {
             pw.print("Proverb: " + wisdom.text + ". ");
             Proverb.out((Proverb) wisdom.typedWisdom, pw);
         }
+        pw.print("Rate: " + wisdom.rate);
     }
 
     public static int countPunctuationMarks(Wisdom wisdom) {
