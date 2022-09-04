@@ -1,6 +1,7 @@
 package tmp.proc;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Proverb implements WisdomUnion {
@@ -13,9 +14,13 @@ public class Proverb implements WisdomUnion {
      * @param scan источник данных для полей класса
      * @return созданный экземпляр Proverb
      */
-    public static Proverb in(Scanner scan) {
+    public static Proverb in(Scanner scan) throws NoSuchElementException {
         Proverb proverb = new Proverb();
-        proverb.country = scan.nextLine();
+        String line = scan.nextLine();
+        if (line.isBlank()) {
+            throw new NoSuchElementException("Country must be at least one symbol length.");
+        }
+        proverb.country = line;
         return proverb;
     }
 

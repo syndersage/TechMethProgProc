@@ -1,6 +1,7 @@
 package tmp.proc;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Aphorism implements WisdomUnion {
@@ -13,9 +14,13 @@ public class Aphorism implements WisdomUnion {
      * @param scan источник данных для полей класса
      * @return созданный экземпляр Aphorism
      */
-    public static Aphorism in(Scanner scan) {
+    public static Aphorism in(Scanner scan) throws NoSuchElementException {
         Aphorism aphorism = new Aphorism();
-        aphorism.author = scan.nextLine();
+        String line = scan.nextLine();
+        if (line.isBlank()) {
+            throw new NoSuchElementException("Author must be at least one symbol length.");
+        }
+        aphorism.author = line;
         return aphorism;
     }
 

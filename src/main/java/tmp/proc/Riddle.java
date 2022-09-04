@@ -1,6 +1,7 @@
 package tmp.proc;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Riddle implements WisdomUnion {
@@ -13,9 +14,13 @@ public class Riddle implements WisdomUnion {
      * @param scan источник данных для полей класса
      * @return созданный экземпляр Riddle
      */
-    public static Riddle in(Scanner scan) {
+    public static Riddle in(Scanner scan) throws NoSuchElementException {
         Riddle riddle = new Riddle();
-        riddle.answer = scan.nextLine();
+        String line = scan.nextLine();
+        if (line.isBlank()) {
+            throw new NoSuchElementException("Riddle must be at least one symbol length.");
+        }
+        riddle.answer = line;
         return riddle;
     }
 
