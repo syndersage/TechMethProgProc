@@ -57,7 +57,7 @@ public class SingleLinkedContainer {
                 if (n1 == null | n2 == null) {
                     return;
                 }
-                if (Wisdom.compare(n1.wisdom, n2.wisdom) > 0) {
+                if (Wisdom.compare(n1.wisdom, n2.wisdom) >= 0) {
                     break;
                 } else {
                     temp = n1.wisdom;
@@ -132,6 +132,14 @@ public class SingleLinkedContainer {
         return slc.size;
     }
 
+    public static Node getHead(SingleLinkedContainer slc) {
+        return slc.head;
+    }
+
+    public static Node getTail(SingleLinkedContainer slc) {
+        return slc.tail;
+    }
+
     /**
      * Осуществляется вывод всех элементов из списка при помощи вызова статического метода
      * вывода информации у Wisdom класс.
@@ -143,6 +151,7 @@ public class SingleLinkedContainer {
     public static void out(SingleLinkedContainer slc, PrintWriter pw) {
         Node tempNode = slc.head;
         for (int i = 0; i < slc.size; i++) {
+            pw.print((i + 1) + ": ");
             Wisdom.out(tempNode.wisdom, pw);
             pw.println();
             tempNode = tempNode.next;
