@@ -5,9 +5,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Wisdom {
-    enum Type {
-        APHORISM, PROVERB, RIDDLE
-    }
 
     private String text;
 
@@ -17,7 +14,32 @@ public class Wisdom {
 
     public static Wisdom in(Scanner scan) throws NumberFormatException, NoSuchElementException {
         Wisdom wisdom = new Wisdom();
-        wisdom.typedWisdom = WisdomUnion.in(scan);
+        String line = scan.nextLine().strip();
+        if (line.isBlank()) {
+            return null;
+        }
+        Wisdom.Type type;
+        try {
+            type = Wisdom.Type.values()[Integer.parseInt(line) - 1];
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            for (int i = 0; i < 3; i++) {
+                if (scan.hasNextLine()) {
+                    scan.nextLine();
+                }
+            }
+            throw new NumberFormatException("Incorrect wisdom type. Expected: [1 - " +
+                    (Wisdom.Type.values().length) + "]. Received: " + line);
+        }
+        StringBuilder linesToRead = new StringBuilder();
+        for (int i = 0; i < type.numOfFields; i++) {
+            linesToRead.append(scan.nextLine()).append("\n");
+        }
+        scan = new Scanner(linesToRead.toString());
+        switch (type) {
+            case APHORISM -> wisdom.typedWisdom = Aphorism.in(scan);
+            case PROVERB -> wisdom.typedWisdom = Proverb.in(scan);
+            case RIDDLE -> wisdom.typedWisdom = Riddle.in(scan);
+        }
         Wisdom.inText(wisdom, scan);
         Wisdom.inRate(wisdom, scan);
         return wisdom;
@@ -39,7 +61,7 @@ public class Wisdom {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Incorrect rate input: Expected [1 - 10]. Received: " + line);
         }
-        if (wisdom.rate < 0 | wisdom.rate > 10) {
+        if (wisdom.rate < 1 | wisdom.rate > 10) {
             wisdom.rate = 0;
             throw new NumberFormatException("Incorrect rate value: Expected [1 - 10]. Received: " + line);
         }
@@ -66,5 +88,14 @@ public class Wisdom {
 
     public static int compare(Wisdom w1, Wisdom w2) {
         return Wisdom.countPunctuationMarks(w1) - Wisdom.countPunctuationMarks(w2);
+    }
+
+    enum Type {
+        APHORISM(3), PROVERB(3), RIDDLE(3);
+        private final int numOfFields;
+
+        Type(int numOfFields) {
+            this.numOfFields = numOfFields;
+        }
     }
 }
