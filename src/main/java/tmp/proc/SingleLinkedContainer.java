@@ -80,6 +80,43 @@ public class SingleLinkedContainer {
         return node;
     }
 
+    public static void iteratePairs(SingleLinkedContainer slc, PrintWriter pw) {
+        WisdomUnion first , second;
+        Node firstNode, secondNode;
+        String firstWisdomType = "";
+        for (int i = 0; i < slc.size - 1; i++) {
+            firstNode = SingleLinkedContainer.getNode(slc, i);
+            if (firstNode != null) {
+                first = Wisdom.getTypedWisdom(firstNode.wisdom);
+            } else {
+                break;
+            }
+            if (first instanceof Aphorism) {
+                firstWisdomType = "Aphorism and ";
+            } else if (first instanceof Proverb) {
+                firstWisdomType = "Proverb and ";
+            } else if (first instanceof Riddle) {
+                firstWisdomType = "Riddle and ";
+            }
+            for (int j = i + 1; j < slc.size; j++) {
+                secondNode = SingleLinkedContainer.getNode(slc, j);
+                if (secondNode != null) {
+                    second = Wisdom.getTypedWisdom(secondNode.wisdom);
+                } else {
+                    break;
+                }
+                pw.print(firstWisdomType);
+                if (second instanceof Aphorism) {
+                    pw.println("Aphorism");
+                } else if (second instanceof Proverb) {
+                    pw.println("Proverb");
+                } else if (second instanceof Riddle) {
+                    pw.println("Riddle");
+                }
+            }
+        }
+    }
+
     /**
      * Очистка контейнера (списка из мудростей) - удаление первой, последней позиций и обнуление длины этого списка.
      *
