@@ -31,6 +31,6 @@ public class Aphorism implements WisdomUnion {
      * @param pw источник, в который будет производиться вывод информации
      */
     public static void out(Aphorism aphorism, PrintWriter pw) {
-        pw.print("Author: " + aphorism.author + ". ");
+        pw.print("By: " + aphorism.author + ". ");
     }
 }
