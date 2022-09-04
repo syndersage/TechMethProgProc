@@ -1,6 +1,7 @@
 package tmp.proc;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class SingleLinkedContainer {
@@ -22,17 +23,25 @@ public class SingleLinkedContainer {
     public static void in(SingleLinkedContainer slc, Scanner scan) {
         Node newNode;
         while (scan.hasNextLine()) {
-            newNode = new Node();
-            newNode.wisdom = Wisdom.in(scan);
-            newNode.next = null;
-            if (slc.head == null) {
-                slc.head = newNode;
+            try {
+                newNode = new Node();
+                newNode.wisdom = Wisdom.in(scan);
+                if (newNode.wisdom != null) {
+                    newNode.next = null;
+                    if (slc.head == null) {
+                        slc.head = newNode;
+                    }
+                    if (slc.tail != null) {
+                        slc.tail.next = newNode;
+                    }
+                    slc.tail = newNode;
+                    slc.size++;
+                    System.out.println("+Wisdom");
+                }
+            } catch (NumberFormatException | NoSuchElementException e) {
+                System.out.println(e.getMessage());
             }
-            if (slc.tail != null) {
-                slc.tail.next = newNode;
-            }
-            slc.tail = newNode;
-            slc.size++;
+
         }
     }
 
