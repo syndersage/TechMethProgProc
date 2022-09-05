@@ -9,7 +9,7 @@ Proc - вариант программы на основе процедурно�
 Используйте java интерпретатор 18+ версии
 
 ```bash
-java -jar TechMethProgOOP-1.0-jar-with-dependencies.jar -i /some/input/file -o /some/output/file
+java -jar TechMethProgProc-1.0-jar-with-dependencies.jar -i /some/input/file -o /some/output/file
 ```
 ### Аргументы:
 
