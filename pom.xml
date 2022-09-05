@@ -48,7 +48,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        tmp.oop.Client
+                                        tmp.proc.Client
                                     </mainClass>
                                 </manifest>
                             </archive>
