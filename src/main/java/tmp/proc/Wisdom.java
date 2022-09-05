@@ -5,13 +5,24 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Wisdom {
-
+    //Текст мудрости
     private String text;
 
+    //Субъективная оценка мудрости
     private byte rate;
 
+    //Тип мудрости, содержащий все соответствующие поля
     private WisdomUnion typedWisdom;
 
+    /**
+     * Создает мудрость указанного типа и заполняет все её поля, выводя null либо исключение
+     * в случае проблем с входными данными
+     *
+     * @param scan источник для характеристик мудрости
+     * @return созданную мудрость с заполненными полями, null - если тип мудрости пустая строка
+     * @throws NumberFormatException если указаны неправильные значения полей мудрости либо её типа
+     * @throws NoSuchElementException если не удается прочитать строку, либо она пустая
+     */
     public static Wisdom in(Scanner scan) throws NumberFormatException, NoSuchElementException {
         Wisdom wisdom = new Wisdom();
         String line = scan.nextLine().strip();
@@ -45,6 +56,13 @@ public class Wisdom {
         return wisdom;
     }
 
+    /**
+     * Заполняет поле text у мудрости
+     *
+     * @param wisdom мудрость, в которой будет заполнено поле
+     * @param scan источник с текстом
+     * @throws NoSuchElementException если не удается прочитать строку, либо она пустая/только из пробелов
+     */
     public static void inText(Wisdom wisdom, Scanner scan) throws NoSuchElementException {
         String line = scan.nextLine();
         if (line.isBlank()) {
@@ -54,6 +72,14 @@ public class Wisdom {
         }
     }
 
+    /**
+     * Заполняет поле rate у мудрости
+     *
+     * @param wisdom мудрость, в которой будет заполнено поле
+     * @param scan источник с рейтингом
+     * @throws NumberFormatException входное значение не является числом, либо не входит в допустимый интервал
+     * @throws NoSuchElementException не удается прочитать строку с рейтингом
+     */
     public static void inRate(Wisdom wisdom, Scanner scan) throws NumberFormatException, NoSuchElementException {
         String line = scan.nextLine();
         try {
@@ -67,6 +93,12 @@ public class Wisdom {
         }
     }
 
+    /**
+     * Вывод информации обо всех полях мудрости
+     *
+     * @param wisdom мудрость, поля которой будут выводиться
+     * @param pw источник, куда будет производиться вывод информации
+     */
     public static void out(Wisdom wisdom, PrintWriter pw) {
         if (wisdom.typedWisdom instanceof Aphorism) {
             pw.print("Aphorism: " + wisdom.text + ". ");
@@ -81,11 +113,25 @@ public class Wisdom {
         pw.print("Rating score: " + wisdom.rate);
     }
 
+    /**
+     * Подсчет количество знаков препинания в поле text
+     *
+     * @param wisdom мудрость, в которой будет производиться подсчет
+     * @return целочисленное количество знаков препинания
+     */
     public static int countPunctuationMarks(Wisdom wisdom) {
         String punMarks = "!.,:;'-?\"";
         return (int) wisdom.text.chars().filter((x) -> punMarks.indexOf(x) != -1).count();
     }
 
+    /**
+     * Сравнение двух мудростей по признаку количества знаков препинания в их полях text
+     *
+     * @param w1 первая мудрость
+     * @param w2 вторая мудрость
+     * @return 0 - количество знаков препинания равно, меньше 0 - у первого меньше знаков,
+     * больше 0 - у второго меньше знаков
+     */
     public static int compare(Wisdom w1, Wisdom w2) {
         return Wisdom.countPunctuationMarks(w1) - Wisdom.countPunctuationMarks(w2);
     }

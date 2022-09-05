@@ -12,6 +12,7 @@ public class Client {
     public static PrintStream logOut = System.out;
     public static Args arguments = new Args();
     public static void main(String[] args) {
+        //Обработка входных аргументов программы
         JCommander jCmd = JCommander.newBuilder().addObject(arguments).build();
         jCmd.setProgramName("Client");
         try {
@@ -26,6 +27,7 @@ public class Client {
             return;
         }
         SingleLinkedContainer slc = new SingleLinkedContainer();
+        //Открытие файлов для чтения/записи и соответствующая обработка информации
         try (Scanner scan = new Scanner(arguments.inPath);
         PrintWriter pw = new PrintWriter(arguments.outPath.toString())) {
             SingleLinkedContainer.in(slc, scan);

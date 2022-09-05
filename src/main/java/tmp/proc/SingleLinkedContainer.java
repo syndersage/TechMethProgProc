@@ -44,6 +44,11 @@ public class SingleLinkedContainer {
         }
     }
 
+    /**
+     * Сортировка указанного контейнера по возрастанию количество знаков препинания в поле text
+     *
+     * @param slc сортируемый контейнер
+     */
     public static void sort(SingleLinkedContainer slc) {
         int j;
         Node n1;
@@ -69,6 +74,13 @@ public class SingleLinkedContainer {
         }
     }
 
+    /**
+     * Вспомогательный для .sort метод, позволяющий получить элемент контейнера по его порядковому номеру
+     *
+     * @param slc контейнер, в котором будет искаться элемент
+     * @param index порядковый номер (индекс) элемента
+     * @return элемент, соответствующий порядковому номеру
+     */
     private static Node getNode(SingleLinkedContainer slc, int index) {
         if (index < 0 | index > slc.size - 1) {
             return null;
@@ -80,6 +92,12 @@ public class SingleLinkedContainer {
         return node;
     }
 
+    /**
+     * Перебирает попарно все элементы контейнера и выводит информацию о типах мудростей, к которым они принадлежат
+     *
+     * @param slc контейнер, элементы которого будут перебираться
+     * @param pw источник, в который будет осуществляться запись
+     */
     public static void iteratePairs(SingleLinkedContainer slc, PrintWriter pw) {
         WisdomUnion first , second;
         Node firstNode, secondNode;
