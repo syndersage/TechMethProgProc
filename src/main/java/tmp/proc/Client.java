@@ -38,6 +38,10 @@ public class Client {
         SingleLinkedContainer.sort(slc);
       }
       SingleLinkedContainer.out(slc, pw);
+      if (arguments.firstType) {
+        pw.println("\r\nAphorisms:");
+        SingleLinkedContainer.outFirstType(slc, pw);
+      }
       if (arguments.pair) {
         pw.println("\r\nIterating every pair:");
         SingleLinkedContainer.iteratePairs(slc, pw);
