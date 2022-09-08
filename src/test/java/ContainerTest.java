@@ -306,4 +306,77 @@ public class ContainerTest {
     SingleLinkedContainer.out(slc, new PrintWriter(output));
     assertEquals(output.toString(), "");
   }
+
+  @Test
+  void outFirstTypeTest() {
+    input = """
+        2
+        country1
+        text!!!1
+        4
+        1
+        author1
+        tex
+        10
+        2
+        country2
+        texttttttt
+        3
+        3
+        answer1
+        text1!
+        8""";
+    SingleLinkedContainer.in(slc, new Scanner(input));
+    SingleLinkedContainer.outFirstType(slc, new PrintWriter(output));
+    assertEquals(output.toString(), """
+        2: Aphorism: tex. By: author1. Rating score: 10\r
+        """);
+  }
+
+  @Test
+  void outFirstTypeEmptyTest() {
+    input = """
+        2
+        country1
+        text!!!1
+        4
+        """;
+    SingleLinkedContainer.in(slc, new Scanner(input));
+    SingleLinkedContainer.outFirstType(slc, new PrintWriter(output));
+    assertEquals(output.toString(), """
+        """);
+  }
+
+  @Test
+  void outFirstType2Test() {
+    input = """
+        1
+        country1
+        text1
+        4
+        2
+        country1
+        text1
+        4
+        1
+        country2
+        text1
+        4
+        1
+        country3
+        text1
+        4
+        3
+        country1
+        text1
+        4
+        """;
+    SingleLinkedContainer.in(slc, new Scanner(input));
+    SingleLinkedContainer.outFirstType(slc, new PrintWriter(output));
+    assertEquals(output.toString(), """
+        1: Aphorism: text1. By: country1. Rating score: 4\r
+        3: Aphorism: text1. By: country2. Rating score: 4\r
+        4: Aphorism: text1. By: country3. Rating score: 4\r
+        """);
+  }
 }
