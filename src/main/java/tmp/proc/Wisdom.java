@@ -4,6 +4,10 @@ import java.io.PrintWriter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Класс является основанием для любой мудрости.
+ * В классе описываются общие для каждой мудрости поля, а также операции над ними и вызовы методов мудростей определенных типов
+ */
 public class Wisdom {
 
   //Текст мудрости

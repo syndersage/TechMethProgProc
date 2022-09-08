@@ -8,6 +8,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import tmp.proc.Wisdom;
 
+/**
+ * Класс содержит методы для тестирования всех типов мудростей на корректное заполнение и чтение их полей.
+ */
 @DisplayName("Aphorism, Proverb, Riddle, ... tests")
 public class WisdomDeriveTest {
 

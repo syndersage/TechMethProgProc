@@ -13,6 +13,9 @@ import org.junit.jupiter.api.Test;
 import tmp.proc.Aphorism;
 import tmp.proc.Wisdom;
 
+/**
+ * Класс содержит методы для тестирования класса Wisdom на корректность заполнения полей и их чтение.
+ */
 @DisplayName("Wisdom tests")
 public class WisdomTest {
 

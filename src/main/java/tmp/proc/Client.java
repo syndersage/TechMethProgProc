@@ -7,6 +7,10 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
+/**
+ * Главный класс программы, содержащий метод main.
+ * Описывает процедуры открытия/закрытия файлов, а также проведения операций над информацией в них в зависимости от указанных аргументов
+ */
 public class Client {
 
   public static PrintStream LOG_OUT = System.out;
