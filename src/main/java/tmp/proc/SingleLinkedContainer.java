@@ -183,6 +183,27 @@ public class SingleLinkedContainer {
       tempNode = tempNode.next;
     }
   }
+
+  /**
+   * Функция, действующая аналогично методы out, однако выводит только мудрости первого типа (Афоризмы)
+   *
+   * @param slc контейнер, из которого будут выводиться элементы
+   * @param pw источник для записи информации об элементах
+   */
+  public static void outFirstType(SingleLinkedContainer slc, PrintWriter pw) {
+    Node tempNode = slc.head;
+    if (tempNode == null) {
+      return;
+    }
+    for (int i = 0; i < slc.size; i++) {
+      if (Wisdom.getTypedWisdom(tempNode.wisdom) instanceof Aphorism) {
+        pw.print((i + 1) + ": ");
+        Wisdom.out(tempNode.wisdom, pw);
+        pw.println();
+      }
+      tempNode = tempNode.next;
+    }
+  }
 }
 
 //Вспомогательный класс для реализации односвязного списка
