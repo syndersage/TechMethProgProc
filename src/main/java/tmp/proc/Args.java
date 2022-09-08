@@ -41,6 +41,10 @@ public class Args {
       description = "Output in console information about program executing")
   public boolean verbose;
 
+  @Parameter (names = {"-f", "--first-type"},
+      description = "Additional write info about only first type of wisdom")
+  public boolean firstType;
+
   //Проверка на существование файла по указанному пути
   public static class FileExistsValidator implements IParameterValidator {
 
